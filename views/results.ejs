@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+
+<h3 class="display-1 text-center">Results</h3>
+
+
+<% if(data["Response"]=="True") { %>
+<h6 class="display-4 text-center"><%=data.totalResults%> results found for you </h6>
+<div class="container">
+  <div class="row" style="display: flex; flex-wrap: wrap;">
+    <% data["Search"].forEach(function(movie) { %>
+    <div class="col-md-4 sm-6  mb-5">
+      <div class="card h-100 border-dark bg-dark">
+        <% if(movie["Poster"]=="N/A"){movie["Poster"]="https://www.lbsnaa.gov.in/upload/academy_souvenir/images/590320c6a39b7No-image-available.jpg"} %> 
+        <% console.log(movie["Poster"]);%>
+        
+        <img class="card-img-top text-white" src="<%= movie["Poster"] %>" alt="">
+        <div class="card-body">
+          <h6 class="card-title text-white"><%= movie["Title"] %></h6>
+          <p class="card-text text-white"><%= movie["Year"] %></p>
+          <%  var url="/info/"+ movie["imdbID"] %>
+          <a href="<%=url %> " class="btn btn-light btn-md">More</a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+    <% var page=Number(pg)+1; %>
+    <% var url="/results/"+page.toString()+"?search="+search; %>
+  </div>
+</div>
+  <% } %>
+  <% if(data.totalResults>=page*10){ %>
+    <div class="container text-center">
+      <a href="<%= url %> " class="btn btn-dark btn-md  ">Next Page</a>
+    </div>
+  
+  <% } %>
+
+  <% if(data["Response"]=="False"){%>
+  <h6 class="display-4 text-center">Sorry! No results found for you </h6>
+
+  <%} %>
+
+</div>
+</div>
+
+
+<%- include("partials/footer") %>
