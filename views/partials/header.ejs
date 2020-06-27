@@ -5,29 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoviedB</title>
     <link rel="stylesheet" href="css/styes.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="script.js"></script>    
+
 </head>
-<body>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand display-4" href="/#">MovieDB</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#search">Search</a>
-            </li>
-            
-          </ul>
-        </div>
-      </nav>
-        
+<body style="font-family: 'Poppins', sans-serif;">
+  <div class="navbar-fixed">
+    <ul id="dropdown1" class="dropdown-content  light-blue lighten-2">
+      <li><a href="/login" ><span class="white-text">Login</span></a></li>
+      <li><a href="/register"><span class="white-text">Sign Up</span></a></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content  light-blue lighten-2">
+      <li><a href="/logout" ><span class="white-text">Log Out</span></a></li>
+      <li><a href="/watchlist"><span class="white-text">Watchlist</span></a></li>
+    </ul>
+    <nav class="nav-extended light-blue lighten-1">
+      <div class="nav-wrapper">
+        <a href="/#!" class="center brand-logo">MovieDB</a>
+        <ul class="right hide-on-med-and-down ">
+          <li><a href="/#">Home</a></li>
+          <li><a href="/#search">Search</a></li>
+          <% if(!currentUser) {%> 
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+          <% } if(currentUser){ %> 
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown2"><%= currentUser.username %> <i class="material-icons right">arrow_drop_down</i></a></li>
+          <% } %> 
+          <li><a></a></li>
+          <li><a></a></li>
+          <li><a></a></li>
+          <a id="toggler" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue accent-2">
+            <i class="material-icons white-text">add</i>
+          </a>
+        </ul>
+      </div>
     </nav>
+  </div>
         

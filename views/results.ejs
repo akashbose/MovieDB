@@ -1,47 +1,63 @@
 <%- include("partials/header") %>
-
-<h3 class="display-1 text-center">Results</h3>
+<h3 class="display-1 center">Results</h3>
 
 
 <% if(data["Response"]=="True") { %>
-<h6 class="display-4 text-center"><%=data.totalResults%> results found for you </h6>
-<div class="container">
-  <div class="row" style="display: flex; flex-wrap: wrap;">
+<h6 class="flow-text center"><%=data.totalResults%> results found for you </h6>
+<div class="container center">
+  <div class="row">
     <% data["Search"].forEach(function(movie) { %>
-    <div class="col-md-4 sm-6  mb-5">
-      <div class="card h-100 border-dark bg-dark">
-        <% if(movie["Poster"]=="N/A"){movie["Poster"]="https://www.lbsnaa.gov.in/upload/academy_souvenir/images/590320c6a39b7No-image-available.jpg"} %> 
-        <% console.log(movie["Poster"]);%>
-        
-        <img class="card-img-top text-white" src="<%= movie["Poster"] %>" alt="">
-        <div class="card-body">
-          <h6 class="card-title text-white"><%= movie["Title"] %></h6>
-          <p class="card-text text-white"><%= movie["Year"] %></p>
+      <div class="col s3">
+        <div class="card medium">
+          <div class="card-image waves-effect waves-block waves-light">
+            <% if(movie["Poster"]=="N/A"){movie["Poster"]="https://www.lbsnaa.gov.in/upload/academy_souvenir/images/590320c6a39b7No-image-available.jpg"} %> 
+            <img class="activator uk-animation-reverse uk-transform-origin-top-right" uk-scrollspy="cls: uk-animation-kenburns; repeat: true" src="<%= movie["Poster"] %> ">
+            
+          </div>
           <%  var url="/info/"+ movie["imdbID"] %>
-          <a href="<%=url %> " class="btn btn-light btn-md">More</a>
+          <a href="<%= url %> " class="btn-floating halfway-fab waves-effect waves-light blue" style="margin-bottom: 160px;"><i class="material-icons">add</i></a>
+          <div class="card-content">
+            <span class="card-title  grey-text text-darken-4"><%= movie["Title"] %><i class="material-icons right">more_vert</i></span>    
+          </div>
+          <div class="card-reveal  blue lighten-2">
+            <span class="card-title white-text "><%= movie["Title"] %><i class="material-icons right">close</i></span>
+            <p class="flow-text white-text text-darken-4 ">
+              Year: <%= movie["Year"] %>
+              <br>
+              Type: <%= movie["Type"] %>
+            </p>
+            <a href="<%=url  %> " class="btn btn-small waves-effect waves white blue-text">More</a>
+          </div>
         </div>
       </div>
-    </div>
-    <% }) %>
-    <% var page=Number(pg)+1; %>
-    <% var url="/results/"+page.toString()+"?search="+search; %>
+    <%})  %> 
   </div>
 </div>
-  <% } %>
+<% } %>
+<% var page=Number(pg)+1; %>
+<% var url="/results/"+page.toString()+"?search="+search; %>
+<div class="container center">
   <% if(data.totalResults>=page*10){ %>
-    <div class="container text-center">
-      <a href="<%= url %> " class="btn btn-dark btn-md  ">Next Page</a>
-    </div>
-  
+      <a href="<%= url %> " class=" center btn btn-large waves-effect waves white-text blue ">Next Page</a>
   <% } %>
-
-  <% if(data["Response"]=="False"){%>
-  <h6 class="display-4 text-center">Sorry! No results found for you </h6>
-
-  <%} %>
-
 </div>
-</div>
+
+<% if(data["Response"]=="False"){%>
+<h6 class="display-4 center">Sorry! No results found for you </h6>
+
+<%} %>
+
 
 
 <%- include("partials/footer") %>
+<script>
+  $(function() {
+    $('.card').hover(
+        function() {
+            $(this).find('> .card-image > img.activator').click();
+        }, function() {
+            $(this).find('> .card-reveal > .card-title').click();
+        }
+    );
+});
+</script>

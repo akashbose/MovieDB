@@ -1,3 +1,35 @@
-<p class="text-center bg-dark mt-5 text-white p-2">Created by Akash</p>
+<br>
+<br>
+<div class="fixed-action-btn">
+  <a id="menu" class="waves-effect waves-light btn btn-large btn-floating light-blue accent-2 blue-text" ><i class="material-icons ">menu</i></a>
+</div>
+ <!-- Tap Target Structure -->
+  <div class="tap-target light-blue accent-3 white-text " data-target="menu">
+    <div class="tap-target-content center">
+      <h5>Created by Akash</h5>
+      <p>This web application was created with love and hardwork by me.Special thanks to Brian Fritz who developed the OmdB API </p>
+    </div>
+  </div>
+  
 </body>
 </html>
+
+
+
+
+<script>
+    $( document ).ready(function() {
+        $('.dropdown-trigger').dropdown({
+          inDuration: 300,
+          outDuration: 225,
+          constrain_width: false, // Does not change width of dropdown to that of the activator
+          hover: true,
+          coverTrigger:false,// Activate on click
+          alignment: 'left', // Aligns dropdown to left or right edge (works with constrain_width
+        });
+        $('.tap-target').tapTarget();
+    });
+    $('#toggler').click(function(){
+      $('.tap-target').tapTarget('open');
+    });
+</script>

@@ -1,0 +1,40 @@
+<%- include("partials/header") %>
+
+<div class="container center">
+      <br>
+      <h2>Watchlist for <%= currentUser.username %> </h2>
+      <br>
+      <table class="striped centered">
+            <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Watched</th>
+                  <th></th>
+              </tr>
+            </thead>
+    
+            <tbody>
+                  <% watchlist.forEach(function(movie){ %>
+                        <tr>
+                              <td><%= movie.movie %> </td>
+                              <% if(movie.watched){ %> 
+                                    <td><i class="material-icons green-text">done_all</i></td>
+                              <% } %> 
+                              <% if(!movie.watched){ %> 
+                                    <td><i class="material-icons red-text">highlight_off</i></td>
+                              <% } %> 
+                              <% if(!movie.watched){ %> 
+                                    <td><a href="/watchlist/<%= movie.id %>" class="btn btn-small halfway-fab waves-effect waves-light light-blue accent-2">Mark as watched</a></td>
+                              <% } %> 
+                              <% if(movie.watched){ %> 
+                                    <td><a href="/watchlist/<%= movie.id %>"  class="btn disabled btn-small halfway-fab waves-effect waves-light light-blue accent-2">Already watched</a></td>
+                              <% } %> 
+                        </tr> 
+                  <% }) %> 
+            </tbody>
+          </table>
+</div>
+
+
+
+<%- include("partials/footer") %>
