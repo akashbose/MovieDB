@@ -8,7 +8,7 @@ var User                    =require("./models/user");
 var Movies                  =require("./models/movies")
 var passportlocalmongoose   =require("passport-local-mongoose");
 var bodyparser              =require("body-parser");
-
+const port = process.env.PORT || 80;
 //mongoose.connect("mongodb://localhost/moviedb", { useNewUrlParser: true , useUnifiedTopology: true });
 mongoose.connect("mongodb+srv://akash:countryroads@cluster0-ztiw4.mongodb.net/moviedb?retryWrites=true&w=majority", { useNewUrlParser: true , useUnifiedTopology: true });
 app.use(require("express-session")({
@@ -153,6 +153,6 @@ function isLoggedIn(req,res,next){
     res.redirect("/login");
 }
 
-app.listen(3000,function(){
+app.listen(port,function(){
     console.log("Moviedb started");
 });
