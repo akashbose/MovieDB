@@ -9,7 +9,8 @@ var Movies                  =require("./models/movies")
 var passportlocalmongoose   =require("passport-local-mongoose");
 var bodyparser              =require("body-parser");
 
-mongoose.connect("mongodb://localhost/moviedb", { useNewUrlParser: true , useUnifiedTopology: true });
+//mongoose.connect("mongodb://localhost/moviedb", { useNewUrlParser: true , useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://akash:countryroads@cluster0-ztiw4.mongodb.net/moviedb?retryWrites=true&w=majority", { useNewUrlParser: true , useUnifiedTopology: true });
 app.use(require("express-session")({
     secret: "password",
     resave:false,
